@@ -5,6 +5,7 @@
 //     ])
 //}
 export default function TableRow({ expense }) {
+   if (!expense) return null; 
   return (
     <tr className="table table-striped mb-1 container-fluid w-100">
       <td style={{ width: "5%" }}>{expense.id}</td>
@@ -15,13 +16,8 @@ export default function TableRow({ expense }) {
       <td style={{ width: "15%" }}>{expense.date}</td>
       <td style={{ width: "10%" }}>{expense.action}</td>
     </tr>
-    // <tr>
-    //   <td>Good</td>
-    //   <td>Good</td>
-    //   <td>Good</td>
-    //   <td>Good</td>
-    //   <td>Good</td>
-    //   <td>Good</td>
-    // </tr>
+
   );
 }
+
+

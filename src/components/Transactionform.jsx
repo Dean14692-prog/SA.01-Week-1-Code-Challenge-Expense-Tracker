@@ -48,6 +48,16 @@ export default function TransactionForm(addExpense) {
    * 4. Update the new input i.e [id]:value
    */
 
+  const handleChange = (event) => {
+    const id = event.target.id;
+    const value = event.target.value;
+
+    setFormData({
+      ...formData,
+      [id]: value,
+    });
+  };
+  
   return (
     <div className="container my-4">
       <form onSubmit={handleSubmit}>

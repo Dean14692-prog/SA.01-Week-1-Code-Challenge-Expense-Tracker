@@ -15,7 +15,7 @@ export default function Table() {
               <TableHeader />
             </thead>
             <tbody>
-              <TableRow />
+              <TableRow/>
             </tbody>
           </table>
         </div>
