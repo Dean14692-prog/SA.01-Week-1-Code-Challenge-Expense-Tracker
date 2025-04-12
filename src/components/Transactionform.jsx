@@ -8,19 +8,36 @@ export default function TransactionForm(addExpense) {
     amount: "",
     date: "",
   });
-  // On the form I want to prevent default behavior of the form/ reloading of the page
+  /**
+   * On my form submission I am focusing on
+   * 1. Preventing Default Behavior of the form/ reloading of the form
+   * 2. Validation of my form to prevent adding blank transactions
+   * 3. Clearing my form inputs when after submission
+   * */
+
+  // 1. Prevent default behavior of the form/ reloading of the page
   const handleSubmit = (event) => {
     event.preventDefault();
-    // A function to prevent adding empty/blank items
+    // 2.Pevent adding empty/blank expenses
     if (
       !formData.amount ||
       !formData.date ||
       !formData.category ||
       !formData.description ||
       !formData.expense
-    )
+    ) {
       alert("Please fill in all required fields");
-    return;
+      return;
+    }
+
+    //3.Clearing all my inputs after Submission
+    setFormData({
+      expense: "",
+      description: "",
+      category: "",
+      amount: "",
+      date: "",
+    });
   };
 
   return (
