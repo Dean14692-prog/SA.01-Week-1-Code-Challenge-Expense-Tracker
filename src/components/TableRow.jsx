@@ -6,12 +6,22 @@
 //}
 export default function TableRow({ expense }) {
   return (
-    <tr>
-      <td>1</td>
-      <td>2</td>
-      <td>3</td>
-      <td>4</td>
-      <td>5</td>
+    <tr className="table table-striped mb-1 container-fluid w-100">
+      <td style={{ width: "5%" }}>{expense.id}</td>
+      <td style={{ width: "15%" }}>{expense.expense}</td>
+      <td style={{ width: "25%" }}>{expense.description}</td>
+      <td style={{ width: "15%" }}>{expense.category}</td>
+      <td style={{ width: "15%" }}>KSh.{expense.amount}</td>
+      <td style={{ width: "15%" }}>{expense.date}</td>
+      <td style={{ width: "10%" }}>{expense.action}</td>
     </tr>
+    // <tr>
+    //   <td>Good</td>
+    //   <td>Good</td>
+    //   <td>Good</td>
+    //   <td>Good</td>
+    //   <td>Good</td>
+    //   <td>Good</td>
+    // </tr>
   );
 }

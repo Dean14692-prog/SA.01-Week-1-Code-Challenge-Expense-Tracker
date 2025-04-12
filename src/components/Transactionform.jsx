@@ -1,30 +1,27 @@
 import { useState } from "react";
 
-export default function TransactionForm() {
+export default function TransactionForm(addExpense) {
   const [formData, setFormData] = useState({
-    expenseName: "",
+    expense: "",
     description: "",
     category: "",
     amount: "",
     date: "",
   });
+// On the form I want to prevent default behavior of the form/ reloading of the page
+  const handleSubmit = (event) => {
+    event.preventDefault();
+}
 
-  <div></div>
-
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-  
   return (
     <div className="container my-4">
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="p-1 rounded-3 shadow-sm border">
           <h5 className="card-title">Add Expense</h5>
 
           <input
             className="form-control mb-1"
-            value={formData.expenseName}
+            value={formData.expense}
             type="text"
             id="expense"
             placeholder="Expense"
@@ -34,15 +31,15 @@ export default function TransactionForm() {
             className="form-control mb-1"
             type="text"
             placeholder="Description"
-            id="Description"
+            id="description"
             value={formData.description}
             onChange={handleChange}
           />
           <input
             className="form-control mb-1"
             type="text"
-            placeholder="Category"
-            id="Category"
+            placeholder="category"
+            id="category"
             value={formData.category}
             onChange={handleChange}
           />
@@ -50,21 +47,21 @@ export default function TransactionForm() {
             className="form-control mb-1"
             type="number"
             placeholder="Amount"
-            id="Amount"
-            value={formData.date}
+            id="amount"
+            value={formData.amount}
             onChange={handleChange}
           />
           <input
             className="form-control mb-1"
             type="date"
             id="date"
-            value={formData.expenseName}
+            value={formData.date}
             onChange={handleChange}
           />
 
           <div className="d-flex justify-content-center mt-3">
             <button
-              type="button"
+              type="submit"
               className="btn btn-primary mb-3"
               style={{ width: "350px" }}
             >

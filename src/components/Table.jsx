@@ -10,14 +10,11 @@ export default function Table() {
         </div>
 
         <div className="table-responsive">
-          <table className="table table-striped">
+          <table className="table table-striped w-100">
             <thead>
               <TableHeader />
             </thead>
             <tbody>
-              {expenses.map((expense) => (
-                
-              ))}
               <TableRow />
             </tbody>
           </table>
