@@ -32,10 +32,19 @@ export default function TransactionForm({ addExpense }) {
       alert("Please fill in all required fields");
       return;
     }
-
+    /***
+     * I am generating Id for my expenses such that when i click delete button it only deletes the current row
+     * I named my function as generateCustomId
+     * 
+     */
+    function generateCustomId() {
+      const num1 = Math.floor(Math.random() * 10); // 0–9
+      const num2 = Math.floor(Math.random() * 10); // 0–9
+      return `M${num1}${num2}B`;
+    }
     // The new expense object
     const newExpense = {
-      // Use current timestamp as unique id
+      id: generateCustomId(),
       expense: formData.expense,
       description: formData.description,
       category: formData.category,
@@ -55,11 +64,12 @@ export default function TransactionForm({ addExpense }) {
     // 4. Call the parent function to add the new expense to the list
     if (addExpense) {
       addExpense(newExpense);
-    } else {
-      console.error("addExpense is not a function");
     }
   };
 
+
+
+ 
   /*
    * On handleChange function focus is
    * 1. Get the id of input and store it in a const i.e const id = event.target.id
