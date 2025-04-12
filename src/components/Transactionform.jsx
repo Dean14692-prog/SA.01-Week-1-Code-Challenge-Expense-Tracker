@@ -40,6 +40,14 @@ export default function TransactionForm(addExpense) {
     });
   };
 
+  /*
+   * On handleChange function focus is
+   * 1. Get the id of input and store it in a const i.e const id = event.target.id
+   * 2. Get the value of input and store it in a const i.e const value = event.target.value
+   * 3. Keep the old data using setFormData i.e (...formData)
+   * 4. Update the new input i.e [id]:value
+   */
+
   return (
     <div className="container my-4">
       <form onSubmit={handleSubmit}>
