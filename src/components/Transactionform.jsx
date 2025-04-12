@@ -8,10 +8,20 @@ export default function TransactionForm(addExpense) {
     amount: "",
     date: "",
   });
-// On the form I want to prevent default behavior of the form/ reloading of the page
+  // On the form I want to prevent default behavior of the form/ reloading of the page
   const handleSubmit = (event) => {
     event.preventDefault();
-}
+    // A function to prevent adding empty/blank items
+    if (
+      !formData.amount ||
+      !formData.date ||
+      !formData.category ||
+      !formData.description ||
+      !formData.expense
+    )
+      alert("Please fill in all required fields");
+    return;
+  };
 
   return (
     <div className="container my-4">
