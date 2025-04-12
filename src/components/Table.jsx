@@ -5,6 +5,7 @@ import TableRow from "./TableRow";
 
 export default function Table() {
   const [expenses, setExpenses] = useState([]);
+  const [search, setSearch] = useState();
   /***
    * Here we are focusing on a function that will add the new expense in the list of already existing expenses
    * setExpenses is the function provided by React's useState hook to update the state of expenses.
@@ -27,6 +28,9 @@ export default function Table() {
     setExpenses(expenses.filter((expense) => expense.id !== id));
   };
 
+  const handleSearch = (event) => {
+    setSearch(event.target.value)
+  }
   return (
     <div className="p-1 rounded-3 shadow-sm border ">
       <div className="d-flex">
