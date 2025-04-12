@@ -2,10 +2,12 @@ import { useState } from "react";
 import TableHeader from "./Tablehead";
 import TransactionForm from "./Transactionform";
 import TableRow from "./TableRow";
-import NavBar from "./NavBar"
+import NavBar from "./NavBar";
 
 export default function Table() {
   const [expenses, setExpenses] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+
   /***
    * Here we are focusing on a function that will add the new expense in the list of already existing expenses
    * setExpenses is the function provided by React's useState hook to update the state of expenses.
@@ -24,14 +26,27 @@ export default function Table() {
     // 3. Save the new list into state
     setExpenses(updatedExpenses);
   }
+
   const deleteExpense = (id) => {
     setExpenses(expenses.filter((expense) => expense.id !== id));
   };
 
+  // Filter logic
+  const filteredExpenses = expenses.filter((expense) => {
+    const term = searchTerm.toLowerCase();
+    return (
+      expense.id.toLowerCase().includes(term) ||
+      expense.category.toLowerCase().includes(term) ||
+      expense.description.toLowerCase().includes(term) ||
+      expense.date.toLowerCase().includes(term) ||
+      expense.amount.toString().toLowerCase().includes(term)
+    );
+  });
+
   return (
     <div>
       <div>
-        <NavBar />
+        <NavBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       </div>
 
       <div className="p-1 rounded-3 shadow-sm border ">
@@ -47,7 +62,7 @@ export default function Table() {
               </thead>
 
               <tbody>
-                {expenses.map((expense) => (
+                {filteredExpenses.map((expense) => (
                   <TableRow
                     key={expense.id}
                     expense={expense}
