@@ -1,12 +1,21 @@
+import { useState } from "react";
 import TableHeader from "./Tablehead";
 import TransactionForm from "./Transactionform";
 import TableRow from "./TableRow";
+
 export default function Table() {
+  const [expenses, setExpenses] = useState([]);
+
+  const addExpense = (newExpense) => {
+    setExpenses((prev) => [...prev, newExpense]);
+  };
+
   return (
     <div className="p-1 rounded-3 shadow-sm border ">
       <div className="d-flex">
         <div className="me-4">
-          <TransactionForm />
+          
+          <TransactionForm addExpense={addExpense} />
         </div>
 
         <div className="table-responsive">
@@ -15,7 +24,9 @@ export default function Table() {
               <TableHeader />
             </thead>
             <tbody>
-              <TableRow/>
+              {expenses.map((expense) => (
+                <TableRow key={expense.id} expense={expense} />
+              ))}
             </tbody>
           </table>
         </div>

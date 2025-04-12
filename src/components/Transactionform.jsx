@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function TransactionForm(addExpense) {
+export default function TransactionForm({ addExpense }) {
   const [formData, setFormData] = useState({
     expense: "",
     description: "",
@@ -8,17 +8,20 @@ export default function TransactionForm(addExpense) {
     amount: "",
     date: "",
   });
+
   /**
    * On my form submission I am focusing on
    * 1. Preventing Default Behavior of the form/ reloading of the form
    * 2. Validation of my form to prevent adding blank transactions
    * 3. Clearing my form inputs when after submission
+   * 4. Adding a newExpense object
    * */
 
   // 1. Prevent default behavior of the form/ reloading of the page
   const handleSubmit = (event) => {
     event.preventDefault();
-    // 2.Pevent adding empty/blank expenses
+
+    // 2. Prevent adding empty/blank expenses
     if (
       !formData.amount ||
       !formData.date ||
@@ -30,7 +33,17 @@ export default function TransactionForm(addExpense) {
       return;
     }
 
-    //3.Clearing all my inputs after Submission
+    // The new expense object
+    const newExpense = {
+      // Use current timestamp as unique id
+      expense: formData.expense,
+      description: formData.description,
+      category: formData.category,
+      amount: formData.amount,
+      date: formData.date,
+    };
+
+    // 3. Clearing all my inputs after submission
     setFormData({
       expense: "",
       description: "",
@@ -38,6 +51,13 @@ export default function TransactionForm(addExpense) {
       amount: "",
       date: "",
     });
+
+    // 4. Call the parent function to add the new expense to the list
+    if (addExpense) {
+      addExpense(newExpense);
+    } else {
+      console.error("addExpense is not a function");
+    }
   };
 
   /*
@@ -47,7 +67,6 @@ export default function TransactionForm(addExpense) {
    * 3. Keep the old data using setFormData i.e (...formData)
    * 4. Update the new input i.e [id]:value
    */
-
   const handleChange = (event) => {
     const id = event.target.id;
     const value = event.target.value;
@@ -57,7 +76,7 @@ export default function TransactionForm(addExpense) {
       [id]: value,
     });
   };
-  
+
   return (
     <div className="container my-4">
       <form onSubmit={handleSubmit}>
@@ -83,7 +102,7 @@ export default function TransactionForm(addExpense) {
           <input
             className="form-control mb-1"
             type="text"
-            placeholder="category"
+            placeholder="Category"
             id="category"
             value={formData.category}
             onChange={handleChange}
