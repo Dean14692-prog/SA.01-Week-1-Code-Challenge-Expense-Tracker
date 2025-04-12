@@ -35,16 +35,18 @@ export default function TransactionForm({ addExpense }) {
     /***
      * I am generating Id for my expenses such that when i click delete button it only deletes the current row
      * I named my function as generateCustomId
-     * 
+     * I chose to use 4 letter id such that M represents Marine, B represents Bank and 2 rando generated numbers
+     *
      */
-    function generateCustomId() {
-      const num1 = Math.floor(Math.random() * 10); // 0–9
-      const num2 = Math.floor(Math.random() * 10); // 0–9
-      return `M${num1}${num2}B`;
+    function uniqueId(id) {
+      const num1 = Math.floor(Math.random() * 10);
+      const num2 = Math.floor(Math.random() * 10);
+      id = `M${num1}${num2}B`;
+      return id;
     }
     // The new expense object
     const newExpense = {
-      id: generateCustomId(),
+      id: uniqueId(),
       expense: formData.expense,
       description: formData.description,
       category: formData.category,
@@ -67,9 +69,6 @@ export default function TransactionForm({ addExpense }) {
     }
   };
 
-
-
- 
   /*
    * On handleChange function focus is
    * 1. Get the id of input and store it in a const i.e const id = event.target.id

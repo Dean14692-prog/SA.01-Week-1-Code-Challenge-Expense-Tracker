@@ -26,7 +26,7 @@ export default function Table() {
   const deleteExpense = (id) => {
     setExpenses(expenses.filter((expense) => expense.id !== id));
   };
-  
+
   return (
     <div className="p-1 rounded-3 shadow-sm border ">
       <div className="d-flex">
@@ -35,7 +35,7 @@ export default function Table() {
         </div>
 
         <div className="table-responsive">
-          <table className="table table-striped w-100">
+          <table className="table table-hover table-striped w-100">
             <thead>
               <TableHeader />
             </thead>
