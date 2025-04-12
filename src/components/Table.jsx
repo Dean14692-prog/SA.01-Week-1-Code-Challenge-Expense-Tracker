@@ -2,6 +2,7 @@ import { useState } from "react";
 import TableHeader from "./Tablehead";
 import TransactionForm from "./Transactionform";
 import TableRow from "./TableRow";
+import NavBar from "./NavBar"
 
 export default function Table() {
   const [expenses, setExpenses] = useState([]);
@@ -28,28 +29,34 @@ export default function Table() {
   };
 
   return (
-    <div className="p-1 rounded-3 shadow-sm border ">
-      <div className="d-flex">
-        <div className="me-4">
-          <TransactionForm addExpense={addExpense} />
-        </div>
+    <div>
+      <div>
+        <NavBar />
+      </div>
 
-        <div className="table-responsive">
-          <table className="table table-hover table-striped w-100">
-            <thead>
-              <TableHeader />
-            </thead>
+      <div className="p-1 rounded-3 shadow-sm border ">
+        <div className="d-flex">
+          <div className="me-4">
+            <TransactionForm addExpense={addExpense} />
+          </div>
 
-            <tbody>
-              {expenses.map((expense) => (
-                <TableRow
-                  key={expense.id}
-                  expense={expense}
-                  onDelete={deleteExpense}
-                />
-              ))}
-            </tbody>
-          </table>
+          <div className="table-responsive">
+            <table className="table table-hover table-striped w-100">
+              <thead>
+                <TableHeader />
+              </thead>
+
+              <tbody>
+                {expenses.map((expense) => (
+                  <TableRow
+                    key={expense.id}
+                    expense={expense}
+                    onDelete={deleteExpense}
+                  />
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
