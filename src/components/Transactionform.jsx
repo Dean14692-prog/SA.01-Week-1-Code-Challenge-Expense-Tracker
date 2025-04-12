@@ -35,7 +35,7 @@ export default function TransactionForm() {
             placeholder="Description"
             id="Description"
             value={formData.description}
-            onChange={(event) => setFormData(event.target.value)}
+            onChange={handleChange}
           />
           <input
             className="form-control mb-1"
@@ -43,7 +43,7 @@ export default function TransactionForm() {
             placeholder="Category"
             id="Category"
             value={formData.category}
-            onChange={(event) => setFormData(event.target.value)}
+            onChange={handleChange}
           />
           <input
             className="form-control mb-1"
@@ -51,14 +51,14 @@ export default function TransactionForm() {
             placeholder="Amount"
             id="Amount"
             value={formData.date}
-            onChange={(event) => setFormData(event.target.value)}
+            onChange={handleChange}
           />
           <input
             className="form-control mb-1"
             type="date"
             id="date"
             value={formData.expenseName}
-            onChange={(event) => setFormData(event.target.value)}
+            onChange={handleChange}
           />
 
           <div className="d-flex justify-content-center mt-3">
