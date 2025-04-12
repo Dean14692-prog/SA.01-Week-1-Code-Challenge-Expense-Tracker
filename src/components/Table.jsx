@@ -15,6 +15,9 @@ export default function Table() {
               <TableHeader />
             </thead>
             <tbody>
+              {expenses.map((expense) => (
+                
+              ))}
               <TableRow />
             </tbody>
           </table>

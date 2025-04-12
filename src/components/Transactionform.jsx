@@ -15,6 +15,7 @@ export default function TransactionForm() {
     const { name, value } = event.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
+  
   return (
     <div className="container my-4">
       <form>
