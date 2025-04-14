@@ -31,14 +31,25 @@ export default function Table() {
     setExpenses(expenses.filter((expense) => expense.id !== id));
   };
 
-  // Filter logic
+  // Searching functionality, 
+  // I am searching while typing
   const filteredExpenses = expenses.filter((expense) => {
+    // Step 1: Convert the search term to lowercase to make the search case-insensitive
     const term = searchTerm.toLowerCase();
+
+    // Step 2: Check if the search term appears in any of the fields of the expense item
     return (
+      // Check if the ID of the expense contains the search term (converted to lowercase)
       expense.id.toLowerCase().includes(term) ||
+      expense.expense.toLowerCase().includes(term) ||
+      // Check if the category of the expense contains the search term (converted to lowercase)
       expense.category.toLowerCase().includes(term) ||
+      // Check if the description of the expense contains the search term (converted to lowercase)
       expense.description.toLowerCase().includes(term) ||
+      // Check if the date of the expense contains the search term (converted to lowercase)
       expense.date.toLowerCase().includes(term) ||
+      // Convert the amount to a string, then to lowercase, and check if it includes the search term
+      // This is necessary because amount is a number and includes() works on strings
       expense.amount.toString().toLowerCase().includes(term)
     );
   });
